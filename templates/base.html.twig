@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block stylesheets %}
+      {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    <title>
+      {% block title %}
+
+      {% endblock %}— SkyrimWiki
+    </title>
+  </head>
+
+  <body>
+    <header class="header">
+      <nav>
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/races">Races</a></li>
+          <li><a href="/competences">Compétences</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <h1 class="text-3xl font-bold underline">Hello world!</h1>
+    <main class="main">
+      {% block content %}
+
+      {% endblock %}
+    </main>
+
+    <footer class="footer">
+      {% block footer %}
+
+      {% endblock %}
+    </footer>
+  </body>
+</html>
