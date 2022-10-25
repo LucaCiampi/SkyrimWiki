@@ -14,26 +14,34 @@
   </head>
 
   <body>
-    <header class="header">
-      <nav>
-        <ul>
-          <li><a href="/">Accueil</a></li>
-          <li><a href="/races">Races</a></li>
-          <li><a href="/competences">Compétences</a></li>
+    <header class="header sticky top-0 bg-neutral-800 text-white">
+      <nav class="flex container mx-auto py-2">
+        <a href="/" class="mr-10">🏠</a>
+        <ul class="flex">
+          <li>
+            <a href="/" class="mr-4">Accueil</a>
+          </li>
+          <li>
+            <a href="/races" class="mr-4">Races</a>
+          </li>
+          <li>
+            <a href="/competences" class="mr-4">Compétences</a>
+          </li>
         </ul>
       </nav>
     </header>
 
-    <h1 class="text-3xl font-bold underline">Hello world!</h1>
-    <main class="main">
+    <main class="main container mx-auto">
       {% block content %}
 
       {% endblock %}
     </main>
 
-    <footer class="footer">
+    <footer class="footer bg-neutral-800 text-white">
       {% block footer %}
-
+        <div class="flex container mx-auto py-12">
+          <p class="text-center text-muted">© 2022 SkyrimWiki, Inc</p>
+        </div>
       {% endblock %}
     </footer>
   </body>
