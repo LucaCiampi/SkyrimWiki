@@ -1,10 +1,20 @@
+# Home
 app_home:
     path: /
     controller: App\Controller\HomeController::index
 
+# Races
 app_race_index:
     path: /races
     controller: App\Controller\RaceController::index
-app_post_show:
+app_race_show:
     path: /races/{id}
     controller: App\Controller\RaceController::show
+
+# Skills
+app_skill_index:
+    path: /skills
+    controller: App\Controller\SkillController::index
+app_skill_show:
+    path: /skills/{id}
+    controller: App\Controller\SkillController::show
