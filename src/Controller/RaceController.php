@@ -10,8 +10,19 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RaceController extends AbstractController
 {
+    /**
+     * Shows all the available races
+     */
     public function index(): Response
     {
-        return $this->render('pages/home.html.twig');
+        return $this->render('pages/races/all.html.twig');
+    }
+    
+    /**
+     * Shows a single race
+     */
+    public function show(): Response
+    {
+        return $this->render('pages/races/single.html.twig');
     }
 }
