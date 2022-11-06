@@ -5,5 +5,10 @@
 {% endblock %}
 
 {% block content %}
-    Toutes les races ici
+  Toutes les races ici :
+  <ul>
+    {% for race in races %}
+      <li><a href="/races/{{ race.name }}">{{race.name}}</a></li>
+    {% endfor %}
+  </ul>
 {% endblock %}

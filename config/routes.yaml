@@ -8,8 +8,11 @@ app_race_index:
     path: /races
     controller: App\Controller\RaceController::index
 app_race_show:
-    path: /races/{id}
+    path: /races/{slug}
     controller: App\Controller\RaceController::show
+app_race_new:
+    path: /races/new
+    controller: App\Controller\RaceController::create
 
 # Skills
 app_skill_index:
