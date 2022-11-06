@@ -14,7 +14,7 @@
               {{ form_errors(skill_form) }}
           </div>
           <div class="mb-3">
-              <label for="skill-name" class="form-label">Name</label>
+              <label for="skill-name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
               {{ form_widget(skill_form.name, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'skill-name'}}) }}
           </div>
           {{ form_row(skill_form.submit) }}
