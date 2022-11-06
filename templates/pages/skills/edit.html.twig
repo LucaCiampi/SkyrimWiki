@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Edit skill
+{% endblock %}
+
+{% block content %}
+    <a href="/skills">Go back</a>
+    edit skill
+    {{ form_start(skill_form) }}
+      {# {{ form_row(skill_form._token) }} #}
+      <form>
+          <div class="my-custom-class-for-errors">
+              {{ form_errors(skill_form) }}
+          </div>
+          <div class="form-group mb-2">
+              <label for="skill-name" class="form-label">Name</label>
+              {{ form_widget(skill_form.name, {'attr': {'class': 'form-control', 'id' : 'skill-name'}}) }}
+          </div>
+          {{ form_row(skill_form.submit) }}
+      </form>
+      {{ form_end(skill_form) }}
+{% endblock %}

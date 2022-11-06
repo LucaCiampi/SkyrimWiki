@@ -41,6 +41,15 @@ app_province_delete:
 app_skill_index:
     path: /skills
     controller: App\Controller\SkillController::index
+app_skill_new:
+    path: /skills/new
+    controller: App\Controller\SkillController::create
 app_skill_show:
-    path: /skills/{id}
+    path: /skills/{slug}
     controller: App\Controller\SkillController::show
+app_skill_edit:
+    path: /skills/edit/{slug}
+    controller: App\Controller\SkillController::edit
+app_skill_delete:
+    path: /skills/delete/{slug}
+    controller: App\Controller\SkillController::delete

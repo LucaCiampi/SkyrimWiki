@@ -5,5 +5,8 @@
 {% endblock %}
 
 {% block content %}
-    une seule compétence ici
+    <a href="/skills">Go back</a>
+    Skill of {{skill.name}}
+    <a href="/skills/edit/{{skill.name}}">Éditer</a>
+    <a href="/skills/delete/{{skill.name}}">Supprimer</a>
 {% endblock %}

@@ -5,5 +5,11 @@
 {% endblock %}
 
 {% block content %}
-    Toutes les compétences ici
+  All skills :
+  <ul>
+    {% for skill in skills %}
+      <li><a href="/skills/{{ skill.name }}">{{skill.name}}</a></li>
+    {% endfor %}
+  </ul>
+  <a href="/skills/new">Nouveau</a>
 {% endblock %}

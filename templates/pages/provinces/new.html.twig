@@ -14,18 +14,16 @@
               {{ form_errors(province_form) }}
           </div>
           <div class="form-group mb-2">
-              <label class="form-label">
-                  <span>Name</span>
-                  {{ form_widget(province_form.name, {'attr': {'class': 'form-control'}}) }}
-              </label>
+              <label for="province-description">Name</label>
+              {{ form_widget(province_form.name, {'attr': {'class': 'form-control', 'id' : 'province-name'}}) }}
           </div>
           <div class="form-group mb-2">
-              <label for="post-content">Description</label>
-              {{ form_widget(province_form.description, {'attr': {'class': 'form-control', 'row': '20', 'id' : 'post-content'}}) }}
+              <label for="province-description">Description</label>
+              {{ form_widget(province_form.description, {'attr': {'class': 'form-control', 'row': '20', 'id' : 'province-description'}}) }}
           </div>
           <div class="form-group mb-2">
-              <label for="post-content">Image</label>
-              {{ form_widget(province_form.image, {'attr': {'class': 'form-control', 'id' : 'post-image', 'placeholder' : 'https://....'}}) }}
+              <label for="province-image">Image</label>
+              {{ form_widget(province_form.image, {'attr': {'class': 'form-control', 'id' : 'province-image', 'placeholder' : 'https://....'}}) }}
           </div>
           {{ form_row(province_form.submit) }}
       </form>
