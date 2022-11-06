@@ -20,12 +20,16 @@
               </label>
           </div>
           <div class="form-group mb-2">
-              <label for="post-content">Description</label>
-              {{ form_widget(race_form.description, {'attr': {'class': 'form-control', 'row': '20', 'id' : 'post-content'}}) }}
+              <label for="race-homeland">Home land</label>
+              {{ form_widget(race_form.homeland, {'attr': {'class': 'form-control', 'row': '20', 'id' : 'race-homeland'}}) }}
           </div>
           <div class="form-group mb-2">
-              <label for="post-content">Image</label>
-              {{ form_widget(race_form.image, {'attr': {'class': 'form-control', 'id' : 'post-image', 'placeholder' : 'https://....'}}) }}
+              <label for="race-description">Description</label>
+              {{ form_widget(race_form.description, {'attr': {'class': 'form-control', 'row': '20', 'id' : 'race-description'}}) }}
+          </div>
+          <div class="form-group mb-2">
+              <label for="race-image">Image</label>
+              {{ form_widget(race_form.image, {'attr': {'class': 'form-control', 'id' : 'race-image', 'placeholder' : 'https://....'}}) }}
           </div>
           {{ form_row(race_form.submit) }}
       </form>
