@@ -5,11 +5,15 @@
 {% endblock %}
 
 {% block content %}
-  All skills :
-  <ul>
+  <h1 class="h1 text-3xl mb-3">Skills</h1>
+  <a href="/skills/new" class="border border-gray-200 rounded-md py-1 px-2 bg-gray-200">Add</a>
+  <div class="flex justify-start mt-4">
     {% for skill in skills %}
-      <li><a href="/skills/{{ skill.name }}">{{skill.name}}</a></li>
+      <div class="m-4 p-4">
+        <a href="/skills/{{ skill.name }}">
+          <h3 class="h3 text-lg">{{ skill.name }}</h3>
+        </a>
+      </div>
     {% endfor %}
-  </ul>
-  <a href="/skills/new">Nouveau</a>
+  </div>
 {% endblock %}

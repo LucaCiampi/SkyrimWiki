@@ -1,41 +1,40 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  New race
+  Edit race
 {% endblock %}
 
 {% block content %}
     <a href="/races">Go back</a>
-    edit race
     {{ form_start(race_form) }}
       {# {{ form_row(race_form._token) }} #}
       <form>
-          <div class="my-custom-class-for-errors">
-              {{ form_errors(race_form) }}
-          </div>
-          <div class="form-group mb-2">
-              <label class="form-label">
-                  <span>Name</span>
-                  {{ form_widget(race_form.name, {'attr': {'class': 'form-control'}}) }}
-              </label>
-          </div>
-          <div class="form-group mb-2">
-              <label for="race-homeland">Home land</label>
-              {{ form_widget(race_form.homeland, {'attr': {'class': 'form-control', 'id' : 'race-homeland'}}) }}
-          </div>
-          <div class="form-group mb-2">
-              <label for="race-skills">Skills</label>
-              {{ form_widget(race_form.skills, {'attr': {'class': 'form-control', 'id' : 'race-skills'}}) }}
-          </div>
-          <div class="form-group mb-2">
-              <label for="race-description">Description</label>
-              {{ form_widget(race_form.description, {'attr': {'class': 'form-control', 'row': '20', 'id' : 'race-description'}}) }}
-          </div>
-          <div class="form-group mb-2">
-              <label for="race-image">Image</label>
-              {{ form_widget(race_form.image, {'attr': {'class': 'form-control', 'id' : 'race-image', 'placeholder' : 'https://....'}}) }}
-          </div>
-          {{ form_row(race_form.submit) }}
+        <div class="mx-auto w-full max-w-md">
+            <h1 class="text-xl mb-2">Edit</h1>
+            <div>
+                {{ form_errors(race_form) }}
+            </div>
+            <div class="mb-3">
+                <label for="race-name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                {{ form_widget(race_form.name, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'race-homeland'}}) }}
+            </div>
+            <div class="mb-3">
+                <label for="race-homeland" class="block text-sm font-medium text-gray-700 mb-1">Home land</label>
+                {{ form_widget(race_form.homeland, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'race-homeland'}}) }}
+            </div>
+            <div class="mb-3">
+                <label for="race-skills" class="block text-sm font-medium text-gray-700 mb-1">Skills</label>
+                {{ form_widget(race_form.skills, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'race-skills'}}) }}
+            </div>
+            <div class="mb-3">
+                <label for="race-description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                {{ form_widget(race_form.description, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'rows': '10', 'id' : 'race-description'}}) }}
+            </div>
+            <div class="mb-3">
+                <label for="race-image" class="block text-sm font-medium text-gray-700 mb-1">Image</label>
+                {{ form_widget(race_form.image, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'race-image', 'placeholder' : 'https://....'}}) }}
+            </div>
+            {{ form_row(race_form.submit, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full bg-gray-200'}}) }}
+        </div>
       </form>
-      {{ form_end(race_form) }}
 {% endblock %}

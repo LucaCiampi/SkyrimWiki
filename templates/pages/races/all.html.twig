@@ -5,11 +5,16 @@
 {% endblock %}
 
 {% block content %}
-  Toutes les races ici :
-  <ul>
+  <h1 class="h1 text-3xl mb-3">Races of Skyrim</h1>
+  <a href="/races/new" class="border border-gray-200 rounded-md py-1 px-2 bg-gray-200">Add</a>
+  <div class="flex mt-4">
     {% for race in races %}
-      <li><a href="/races/{{ race.name }}">{{race.name}}</a></li>
+      <div class="m-4 p-4">
+        <a href="/races/{{ race.name }}">
+          <img src="{{ race.image }}" alt="{{ race.name }}" width="30%" height="auto" />
+          <h3 class="h3 text-lg">{{ race.name }}</h3>
+        </a>
+      </div>
     {% endfor %}
-  </ul>
-  <a href="/races/new">Nouveau</a>
+  </div>
 {% endblock %}

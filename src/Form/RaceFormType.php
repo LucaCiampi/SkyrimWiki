@@ -19,13 +19,7 @@ class RaceFormType extends AbstractType
             ->add('image')
             ->add('homeland')
             ->add('skills')
-            ->add('submit',
-                SubmitType::class,
-                [
-                    'attr' => [
-                        'class' => 'btn btn-primary shadow-sm hover:bg-indigo-700 bg-indigo-600'
-                    ]
-                ])
+            ->add('submit', SubmitType::class)
         ;
     }
 

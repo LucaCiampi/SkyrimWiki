@@ -13,9 +13,9 @@
           <div class="my-custom-class-for-errors">
               {{ form_errors(skill_form) }}
           </div>
-          <div class="form-group mb-2">
+          <div class="mb-3">
               <label for="skill-name">Name</label>
-              {{ form_widget(skill_form.name, {'attr': {'class': 'form-control', 'id' : 'skill-name'}}) }}
+              {{ form_widget(skill_form.name, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'skill-name'}}) }}
           </div>
           {{ form_row(skill_form.submit) }}
       </form>
