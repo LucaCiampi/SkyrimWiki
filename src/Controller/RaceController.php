@@ -57,11 +57,30 @@ class RaceController extends AbstractController
             $entityManager->persist($race);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_race_index');
         }
 
         return $this->render('pages/races/new.html.twig', [
             'new_race_form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * Deletes a race
+     */
+    public function delete(ManagerRegistry $doctrine, String $slug): Response
+    {
+        $race = $doctrine->getRepository(Race::class)->findOneBy(['name' => $slug]);
+
+        // if ($race->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
+        //     throw $this->createAccessDeniedException();
+        // }
+
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($race);
+        $entityManager->flush();
+
+        $this->addFlash('message', 'Race supprimé avec succès');
+        return $this->redirectToRoute('app_race_index');
     }
 }
