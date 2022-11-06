@@ -6,5 +6,10 @@
 
 {% block content %}
     Race {{race.name}}
+    {{race.description}}
+    {% if race.image %}
+    <img src="{{race.image}}" alt="{{race.name}}">
+    {% endif %}
+    <a href="/races/edit/{{race.name}}">Éditer</a>
     <a href="/races/delete/{{race.name}}">Supprimer</a>
 {% endblock %}

@@ -61,7 +61,36 @@ class RaceController extends AbstractController
         }
 
         return $this->render('pages/races/new.html.twig', [
-            'new_race_form' => $form->createView(),
+            'race_form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * Edits an existing race
+     */
+    public function edit(Request $request, ManagerRegistry $doctrine, String $slug): Response
+    {
+        $race = $doctrine->getRepository(Race::class)->findOneBy(['name' => $slug]);
+
+        // if ($post->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
+        //     throw $this->createAccessDeniedException();
+        // }
+
+        $race->setModifiedAt(new \DateTimeImmutable());
+        $form = $this->createForm(RaceFormType::class, $race);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($race);
+            $entityManager->flush();
+
+            $this->addFlash('message', 'Race modifiée avec succès');
+            return $this->redirectToRoute('app_race_index');
+        }
+        
+        return $this->render('pages/races/edit.html.twig', [
+            'race_form' => $form->createView(),
         ]);
     }
 
