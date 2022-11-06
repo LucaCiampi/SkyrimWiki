@@ -37,9 +37,13 @@ class Race
     #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'races')]
     private Collection $skills;
 
+    #[ORM\OneToMany(mappedBy: 'Race', targetEntity: Follower::class)]
+    private Collection $followers;
+
     public function __construct()
     {
         $this->skills = new ArrayCollection();
+        $this->followers = new ArrayCollection();
     }
 
     public function __toString()
@@ -144,6 +148,36 @@ class Race
     public function removeSkill(Skill $skill): self
     {
         $this->skills->removeElement($skill);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Follower>
+     */
+    public function getFollowers(): Collection
+    {
+        return $this->followers;
+    }
+
+    public function addFollower(Follower $follower): self
+    {
+        if (!$this->followers->contains($follower)) {
+            $this->followers->add($follower);
+            $follower->setRace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollower(Follower $follower): self
+    {
+        if ($this->followers->removeElement($follower)) {
+            // set the owning side to null (unless already changed)
+            if ($follower->getRace() === $this) {
+                $follower->setRace(null);
+            }
+        }
 
         return $this;
     }

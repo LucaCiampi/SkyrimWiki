@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,6 +33,14 @@ class City
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $modifiedAt = null;
+
+    #[ORM\OneToMany(mappedBy: 'livingIn', targetEntity: Follower::class)]
+    private Collection $followers;
+
+    public function __construct()
+    {
+        $this->followers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -105,6 +115,36 @@ class City
     public function setModifiedAt(\DateTimeImmutable $modifiedAt): self
     {
         $this->modifiedAt = $modifiedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Follower>
+     */
+    public function getFollowers(): Collection
+    {
+        return $this->followers;
+    }
+
+    public function addFollower(Follower $follower): self
+    {
+        if (!$this->followers->contains($follower)) {
+            $this->followers->add($follower);
+            $follower->setLivingIn($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollower(Follower $follower): self
+    {
+        if ($this->followers->removeElement($follower)) {
+            // set the owning side to null (unless already changed)
+            if ($follower->getLivingIn() === $this) {
+                $follower->setLivingIn(null);
+            }
+        }
 
         return $this;
     }
