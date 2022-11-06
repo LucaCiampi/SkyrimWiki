@@ -6,8 +6,9 @@
 
 {% block content %}
     <a href="/races">Go back</a>
-    Race {{race.name}}
-    people of {{race.homeland}}
+    <h1>Race {{race.name}}</h1>
+    <p>people of {{race.homeland}}</p>
+    <p>good at {% for skill in race.skills %}{{skill}}{% endfor %}</p>
     {{race.description}}
     {% if race.image %}
     <img src="{{race.image}}" alt="{{race.name}}">

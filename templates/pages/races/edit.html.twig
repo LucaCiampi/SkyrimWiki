@@ -21,7 +21,11 @@
           </div>
           <div class="form-group mb-2">
               <label for="race-homeland">Home land</label>
-              {{ form_widget(race_form.homeland, {'attr': {'class': 'form-control', 'row': '20', 'id' : 'race-homeland'}}) }}
+              {{ form_widget(race_form.homeland, {'attr': {'class': 'form-control', 'id' : 'race-homeland'}}) }}
+          </div>
+          <div class="form-group mb-2">
+              <label for="race-skills">Skills</label>
+              {{ form_widget(race_form.skills, {'attr': {'class': 'form-control', 'id' : 'race-skills'}}) }}
           </div>
           <div class="form-group mb-2">
               <label for="race-description">Description</label>
