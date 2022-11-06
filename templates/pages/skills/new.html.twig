@@ -5,19 +5,22 @@
 {% endblock %}
 
 {% block content %}
-    <a href="/skills">Go back</a>
-    new skill
+    <a href="/skills">&lt; Go back</a>
+
     {{ form_start(skill_form) }}
       {# {{ form_row(skill_form._token) }} #}
       <form>
-          <div class="my-custom-class-for-errors">
-              {{ form_errors(skill_form) }}
-          </div>
-          <div class="mb-3">
-              <label for="skill-name">Name</label>
-              {{ form_widget(skill_form.name, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'skill-name'}}) }}
-          </div>
-          {{ form_row(skill_form.submit) }}
+        <div class="mx-auto w-full max-w-md">
+            <h1 class="text-xl mb-2">New</h1>
+            <div class="my-custom-class-for-errors">
+                {{ form_errors(skill_form) }}
+            </div>
+            <div class="mb-3">
+                <label for="skill-name">Name</label>
+                {{ form_widget(skill_form.name, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'skill-name'}}) }}
+            </div>
+            {{ form_row(skill_form.submit, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full bg-gray-200'}}) }}
+        </div>
       </form>
       {{ form_end(skill_form) }}
 {% endblock %}

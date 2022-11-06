@@ -17,13 +17,7 @@ class ProvinceFormType extends AbstractType
             ->add('name')
             ->add('description', TextareaType::class)
             ->add('image')
-            ->add('submit',
-                SubmitType::class,
-                [
-                    'attr' => [
-                        'class' => 'btn btn-primary shadow-sm hover:bg-indigo-700 bg-indigo-600'
-                    ]
-                ])
+            ->add('submit', SubmitType::class)
         ;
     }
 
