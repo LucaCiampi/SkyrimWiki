@@ -9,10 +9,12 @@
     <div>
       <a href="/races" class="border border-gray-200 rounded-md py-1 px-2 bg-gray-200">&lt; Go back</a>
     </div>
-    <div>
-      <a href="/races/edit/{{ race.name }}" class="border border-gray-200 rounded-md py-1 px-2 bg-gray-200">Éditer</a>
-      <a href="/races/delete/{{ race.name }}" class="border border-gray-200 rounded-md py-1 px-2 bg-gray-200">Supprimer</a>
-    </div>
+    {% if app.user %}
+      <div>
+        <a href="/races/edit/{{ race.name }}" class="border border-gray-200 rounded-md py-1 px-2 bg-gray-200">Éditer</a>
+        <a href="/races/delete/{{ race.name }}" class="border border-gray-200 rounded-md py-1 px-2 bg-gray-200">Supprimer</a>
+      </div>
+    {% endif %}
   </div>
   <div class="mb-4">
     <h1 class="text-3xl">{{ race.name }}</h1>

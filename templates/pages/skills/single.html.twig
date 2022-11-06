@@ -5,8 +5,11 @@
 {% endblock %}
 
 {% block content %}
-    <a href="/skills">Go back</a>
-    Skill of {{skill.name}}
-    <a href="/skills/edit/{{skill.name}}">Éditer</a>
-    <a href="/skills/delete/{{skill.name}}">Supprimer</a>
+  <a href="/skills">Go back</a>
+  Skill of {{ skill.name }}
+
+  {% if app.user %}
+    <a href="/skills/edit/{{ skill.name }}">Éditer</a>
+    <a href="/skills/delete/{{ skill.name }}">Supprimer</a>
+  {% endif %}
 {% endblock %}

@@ -6,7 +6,11 @@
 
 {% block content %}
   <h1 class="h1 text-3xl mb-3">Races of Skyrim</h1>
-  <a href="/races/new" class="border border-gray-200 rounded-md py-1 px-2 bg-gray-200">Add</a>
+
+  {% if app.user %}
+    <a href="/races/new" class="border border-gray-200 rounded-md py-1 px-2 bg-gray-200">Add</a>
+  {% endif %}
+  
   <div class="flex mt-4">
     {% for race in races %}
       <div class="m-4 p-4">

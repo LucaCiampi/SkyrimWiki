@@ -46,6 +46,10 @@ class RaceController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+
         $race = new Race();
         $race->setCreatedAt(new \DateTimeImmutable());
         $race->setModifiedAt(new \DateTimeImmutable());
@@ -70,11 +74,11 @@ class RaceController extends AbstractController
      */
     public function edit(Request $request, ManagerRegistry $doctrine, String $slug): Response
     {
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+        
         $race = $doctrine->getRepository(Race::class)->findOneBy(['name' => $slug]);
-
-        // if ($post->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
-        //     throw $this->createAccessDeniedException();
-        // }
 
         $race->setModifiedAt(new \DateTimeImmutable());
         $form = $this->createForm(RaceFormType::class, $race);

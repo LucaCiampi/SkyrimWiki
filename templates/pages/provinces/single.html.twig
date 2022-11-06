@@ -5,12 +5,14 @@
 {% endblock %}
 
 {% block content %}
-    <a href="/provinces">Go back</a>
-    Province {{province.name}}
-    {{province.description}}
-    {% if province.image %}
-    <img src="{{province.image}}" alt="{{province.name}}">
-    {% endif %}
-    <a href="/provinces/edit/{{province.name}}">Éditer</a>
-    <a href="/provinces/delete/{{province.name}}">Supprimer</a>
+  <a href="/provinces">Go back</a>
+  Province {{ province.name }}
+  {{ province.description }}
+  {% if province.image %}
+    <img src="{{ province.image }}" alt="{{ province.name }}" />
+  {% endif %}
+  {% if app.user %}
+    <a href="/provinces/edit/{{ province.name }}">Éditer</a>
+    <a href="/provinces/delete/{{ province.name }}">Supprimer</a>
+  {% endif %}
 {% endblock %}
