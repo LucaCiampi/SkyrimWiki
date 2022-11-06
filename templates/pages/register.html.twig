@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    <div class="mx-auto max-w-lg flex justify-center mt-20 pb-48">
+        <div>
+            <h1 class="h3 mb-4 font-weight-normal">Register</h1>
+
+            {{ form_start(registrationForm) }}
+                <div>
+                    <div class="form-group mb-2">
+                        <label class="form-label">
+                            <span class="d-block mb-2">Username</span>
+                            {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control'}}) }}
+                        </label>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="form-label">
+                            <span class="d-block mb-2">Email</span>
+                            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                        </label>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="form-label">
+                            <span class="d-block mb-2">Password</span>
+                            {{ form_widget(registrationForm.plainPassword, {
+                                label: 'Password',
+                                'attr': {'class': 'form-control'}
+                            }) }}
+                        </label>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="form-label">
+                            {{ form_widget(registrationForm.agreeTerms) }}
+                            <span class="d-block mb-2">Agree to terms</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary bg-indigo-600 hover:bg-indigo-700">Register</button>
+                </div>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+{% endblock %}
