@@ -29,6 +29,9 @@ class Race
     #[ORM\Column(length: 511, nullable: true)]
     private ?string $image = null;
 
+    #[ORM\ManyToOne(inversedBy: 'nativeRaces')]
+    private ?Province $homeland = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Race
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getHomeland(): ?Province
+    {
+        return $this->homeland;
+    }
+
+    public function setHomeland(?Province $homeland): self
+    {
+        $this->homeland = $homeland;
 
         return $this;
     }

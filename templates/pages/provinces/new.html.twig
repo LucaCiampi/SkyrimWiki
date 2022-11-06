@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  New province
+{% endblock %}
+
+{% block content %}
+    <a href="/provinces">Go back</a>
+    new province
+    {{ form_start(province_form) }}
+      {# {{ form_row(province_form._token) }} #}
+      <form>
+          <div class="my-custom-class-for-errors">
+              {{ form_errors(province_form) }}
+          </div>
+          <div class="form-group mb-2">
+              <label class="form-label">
+                  <span>Name</span>
+                  {{ form_widget(province_form.name, {'attr': {'class': 'form-control'}}) }}
+              </label>
+          </div>
+          <div class="form-group mb-2">
+              <label for="post-content">Description</label>
+              {{ form_widget(province_form.description, {'attr': {'class': 'form-control', 'row': '20', 'id' : 'post-content'}}) }}
+          </div>
+          <div class="form-group mb-2">
+              <label for="post-content">Image</label>
+              {{ form_widget(province_form.image, {'attr': {'class': 'form-control', 'id' : 'post-image', 'placeholder' : 'https://....'}}) }}
+          </div>
+          {{ form_row(province_form.submit) }}
+      </form>
+      {{ form_end(province_form) }}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  All provinces
+{% endblock %}
+
+{% block content %}
+  Toutes les provinces ici :
+  <ul>
+    {% for province in provinces %}
+      <li><a href="/provinces/{{ province.name }}">{{province.name}}</a></li>
+    {% endfor %}
+  </ul>
+  <a href="/provinces/new">Nouveau</a>
+{% endblock %}

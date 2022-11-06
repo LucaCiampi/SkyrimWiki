@@ -20,6 +20,23 @@ app_race_delete:
     path: /races/delete/{slug}
     controller: App\Controller\RaceController::delete
 
+# Provinces
+app_province_index:
+    path: /provinces
+    controller: App\Controller\ProvinceController::index
+app_province_new:
+    path: /provinces/new
+    controller: App\Controller\ProvinceController::create
+app_province_show:
+    path: /provinces/{slug}
+    controller: App\Controller\ProvinceController::show
+app_province_edit:
+    path: /provinces/edit/{slug}
+    controller: App\Controller\ProvinceController::edit
+app_province_delete:
+    path: /provinces/delete/{slug}
+    controller: App\Controller\ProvinceController::delete
+
 # Skills
 app_skill_index:
     path: /skills
