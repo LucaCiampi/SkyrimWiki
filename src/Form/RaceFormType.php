@@ -17,6 +17,7 @@ class RaceFormType extends AbstractType
             ->add('name')
             ->add('description', TextareaType::class)
             ->add('image')
+            ->add('homeland')
             ->add('submit',
                 SubmitType::class,
                 [
