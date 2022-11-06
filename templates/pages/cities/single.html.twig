@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Single city
+{% endblock %}
+
+{% block content %}
+  <a href="/cities">Go back</a>
+  City of {{ city.name }}
+  {{ city.description }}
+  {% if city.photo %}
+    <img src="{{ city.photo }}" alt="{{ city.name }}" />
+  {% endif %}
+  {% if app.user %}
+    <a href="/cities/edit/{{ city.name }}">Éditer</a>
+    <a href="/cities/delete/{{ city.name }}">Supprimer</a>
+  {% endif %}
+{% endblock %}

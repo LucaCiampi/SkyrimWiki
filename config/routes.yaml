@@ -69,3 +69,20 @@ app_skill_edit:
 app_skill_delete:
     path: /skills/delete/{slug}
     controller: App\Controller\SkillController::delete
+
+# Cities
+app_city_index:
+    path: /cities
+    controller: App\Controller\CityController::index
+app_city_new:
+    path: /cities/new
+    controller: App\Controller\CityController::create
+app_city_show:
+    path: /cities/{slug}
+    controller: App\Controller\CityController::show
+app_city_edit:
+    path: /cities/edit/{slug}
+    controller: App\Controller\CityController::edit
+app_city_delete:
+    path: /cities/delete/{slug}
+    controller: App\Controller\CityController::delete

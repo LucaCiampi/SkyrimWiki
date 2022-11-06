@@ -34,9 +34,13 @@ class Province
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $modifiedAt = null;
 
+    #[ORM\OneToMany(mappedBy: 'province', targetEntity: City::class)]
+    private Collection $cities;
+
     public function __construct()
     {
         $this->nativeRaces = new ArrayCollection();
+        $this->cities = new ArrayCollection();
     }
 
     public function __toString()
@@ -135,6 +139,36 @@ class Province
     public function setModifiedAt(?\DateTimeImmutable $modifiedAt): self
     {
         $this->modifiedAt = $modifiedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, City>
+     */
+    public function getCities(): Collection
+    {
+        return $this->cities;
+    }
+
+    public function addCity(City $city): self
+    {
+        if (!$this->cities->contains($city)) {
+            $this->cities->add($city);
+            $city->setProvince($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCity(City $city): self
+    {
+        if ($this->cities->removeElement($city)) {
+            // set the owning side to null (unless already changed)
+            if ($city->getProvince() === $this) {
+                $city->setProvince(null);
+            }
+        }
 
         return $this;
     }
