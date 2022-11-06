@@ -15,23 +15,34 @@
 
   <body>
     <header class="header sticky top-0 bg-neutral-800 text-white">
-      <nav class="flex container mx-auto py-2">
-        <a href="/" class="mr-10">🏠</a>
-        <ul class="flex">
-          <li>
-            <a href="/" class="mr-4">Accueil</a>
-          </li>
-          <li>
-            <a href="/races" class="mr-4">Races</a>
-          </li>
-          <li>
-            <a href="/provinces" class="mr-4">Provinces</a>
-          </li>
-          <li>
-            <a href="/skills" class="mr-4">Compétences</a>
-          </li>
-        </ul>
-      </nav>
+      <div class="flex justify-between container mx-auto py-2">
+        <nav class="flex">
+          <a href="/" class="mr-10">🏠</a>
+          <ul class="flex">
+            <li>
+              <a href="/" class="mr-4">Accueil</a>
+            </li>
+            <li>
+              <a href="/races" class="mr-4">Races</a>
+            </li>
+            <li>
+              <a href="/provinces" class="mr-4">Provinces</a>
+            </li>
+            <li>
+              <a href="/skills" class="mr-4">Compétences</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="flex">
+          {% if app.user %}
+            <a class="ml-2" href="/user/{{ app.user.id }}">{{ app.user.username }}</a>
+            <a class="ml-2" href="/logout" class=""><img class="h-6 w-6" src="/images/logout.svg" alt="" /></a>
+          {% else %}
+            <a class="ml-2" href="/login" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">Sign in</a>
+            <a class="ml-2" href="/signup" class="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Sign up</a>
+          {% endif %}
+        </div>
+      </div>
     </header>
 
     <main class="main container mx-auto py-12">
