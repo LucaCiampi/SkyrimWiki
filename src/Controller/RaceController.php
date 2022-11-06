@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Race;
+use App\Form\RaceFormType;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
@@ -46,7 +47,11 @@ class RaceController extends AbstractController
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $race = new Race();
-        $form = $this->createForm(PostFormType::class, $race);
+        $race->setCreatedAt(new \DateTimeImmutable());
+        $race->setModifiedAt(new \DateTimeImmutable());
+        $form = $this->createForm(RaceFormType::class, $race);
+
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($race);

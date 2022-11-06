@@ -6,4 +6,27 @@
 
 {% block content %}
     new race
+    {{ form_start(new_race_form) }}
+      {# {{ form_row(new_race_form._token) }} #}
+      <form>
+          <div class="my-custom-class-for-errors">
+              {{ form_errors(new_race_form) }}
+          </div>
+          <div class="form-group mb-2">
+              <label class="form-label">
+                  <span>Name</span>
+                  {{ form_widget(new_race_form.name, {'attr': {'class': 'form-control'}}) }}
+              </label>
+          </div>
+          <div class="form-group mb-2">
+              <label for="post-content">Description</label>
+              {{ form_widget(new_race_form.description, {'attr': {'class': 'form-control', 'row': '20', 'id' : 'post-content'}}) }}
+          </div>
+          <div class="form-group mb-2">
+              <label for="post-content">Image</label>
+              {{ form_widget(new_race_form.image, {'attr': {'class': 'form-control', 'id' : 'post-image', 'placeholder' : 'https://....'}}) }}
+          </div>
+          {{ form_row(new_race_form.submit) }}
+      </form>
+      {{ form_end(new_race_form) }}
 {% endblock %}
