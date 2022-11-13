@@ -16,10 +16,13 @@
       </div>
     {% endif %}
   </div>
-  <div class="mb-4">
-    <h1 class="text-3xl">{{ skill.name }}</h1>
-    {% if skill.image %}
-      <img src="{{ skill.image }}" alt="{{ skill.name }}" />
-    {% endif %}
+  <div class="grid">
+    <div class="mb-4">
+      {% if skill.image %}
+        <img class="float-right max-w-sm" src="{{ skill.image }}" alt="{{ skill.name }}" />
+      {% endif %}
+      <h1 class="text-3xl">{{ skill.name }}</h1>
+      <h2 class="text-xl font-dovahkiin">{{ skill.name }}</h2>
+    </div>
   </div>
 {% endblock %}

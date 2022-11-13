@@ -16,11 +16,14 @@
       </div>
     {% endif %}
   </div>
-  <div class="mb-4">
-    <h1 class="text-3xl">{{ province.name }}</h1>
-    {{ province.description }}
-    {% if province.image %}
-      <img src="{{ province.image }}" alt="{{ province.name }}" />
-    {% endif %}
+  <div class="grid">
+    <div class="mb-4">
+      {% if province.image %}
+        <img class="float-right max-w-sm" src="{{ province.image }}" alt="{{ province.name }}" />
+      {% endif %}
+      <h1 class="text-3xl">{{ province.name }}</h1>
+      <h2 class="text-xl font-dovahkiin">{{ province.name }}</h2>
+      {{ province.description }}
+    </div>
   </div>
 {% endblock %}
