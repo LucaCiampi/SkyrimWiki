@@ -15,6 +15,7 @@ class SkillFormType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('image')
             ->add('submit', SubmitType::class)
         ;
     }

@@ -15,9 +15,15 @@
 
   <div class="flex mt-4">
     {% for race in races %}
-      <div class="m-4 p-4">
+      <div class="relative w-1/5 m-4 p-4">
         <a href="/races/{{ race.name }}">
-          <img src="{{ race.image }}" alt="{{ race.name }}" width="30%" height="auto" />
+          <div class="relative overflow-hidden w-full h-72 bg-gray-300">
+            {% if race.image %}
+              <img class="object-cover mx-auto h-full w-full" src="{{ race.image }}" alt="{{ race.name }}" />
+            {% else %}
+              <img class="object-cover mx-auto h-full w-full" src="/images/thuum.png" alt="{{ race.name }}" />
+            {% endif %}
+          </div>
           <h3 class="h3 text-lg">{{ race.name }}</h3>
         </a>
       </div>

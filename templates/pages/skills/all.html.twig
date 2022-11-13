@@ -16,7 +16,16 @@
   <div class="flex justify-start mt-4">
     {% for skill in skills %}
       <div class="m-4 p-4">
-        <a href="/skills/{{ skill.name }}"><h3 class="h3 text-lg">{{ skill.name }}</h3></a>
+        <a href="/skills/{{ skill.name }}">
+        <div class="relative overflow-hidden w-full h-42">
+          {% if skill.image %}
+            <img class="object-cover mx-auto h-full w-full" src="{{ skill.image }}" alt="{{ skill.name }}" />
+          {% else %}
+            <img class="object-cover mx-auto h-full w-full" src="/images/skill-stone.png" alt="{{ skill.name }}" />
+          {% endif %}
+        </div>
+        <h3 class="h3 text-lg">{{ skill.name }}</h3>
+        </a>
       </div>
     {% endfor %}
   </div>

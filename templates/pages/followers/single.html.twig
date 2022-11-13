@@ -7,6 +7,7 @@
 {% block content %}
   <a href="/followers">&lt; Go back</a>
   <h1 class="text-3xl">{{ follower.name }}</h1>
+  <h2 class="text-xl font-dovahkiin">{{ follower.name }}</h2>
   <h3 class="text-xl">{{ follower.race }}</h3>
   <p>Found in {{ follower.livingIn }}</p>
   <p>{{ follower.biography }}</p>
@@ -14,7 +15,7 @@
     <img src="{{ follower.image }}" alt="{{ follower.name }}" />
   {% endif %}
   {% if app.user %}
-    <a href="/followers/edit/{{ follower.name }}">Éditer</a>
-    <a href="/followers/delete/{{ follower.name }}">Supprimer</a>
+    <a href="/followers/edit/{{ follower.name }}">Edit</a>
+    <a href="/followers/delete/{{ follower.name }}">Delete</a>
   {% endif %}
 {% endblock %}

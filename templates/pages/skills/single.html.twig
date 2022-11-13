@@ -7,12 +7,12 @@
 {% block content %}
   <div class="flex justify-between mb-4">
     <div>
-      <a href="/skills" class="block self-end rounded-md py-1 px-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">&lt; Go back</a>
+      <a href="/skills">&lt; Go back</a>
     </div>
     {% if app.user %}
       <div class="flex">
-        <a href="/skills/edit/{{ skill.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">Éditer</a>
-        <a href="/skills/delete/{{ skill.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-red-500 hover:bg-red-600 duration-100 text-white">Supprimer</a>
+        <a href="/skills/edit/{{ skill.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">Edit</a>
+        <a href="/skills/delete/{{ skill.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-red-500 hover:bg-red-600 duration-100 text-white">Delete</a>
       </div>
     {% endif %}
   </div>

@@ -7,6 +7,10 @@ body {
     background-color: #f9f9f9;
 }
 
+img, video {
+    max-width: unset;
+}
+
 .main {
     position: relative;
     min-height: 85vh;

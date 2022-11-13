@@ -15,9 +15,15 @@
 
   <div class="flex mt-4">
     {% for follower in followers %}
-      <div class="m-4 p-4">
+      <div class="relative w-1/5 m-4 p-4">
         <a href="/followers/{{ follower.name }}">
-          <img src="{{ follower.image }}" alt="{{ follower.name }}" width="30%" height="auto" />
+          <div class="relative overflow-hidden w-full h-72 bg-gray-300">
+            {% if follower.image %}
+              <img class="object-cover mx-auto h-full w-full" src="{{ follower.image }}" alt="{{ follower.name }}" />
+            {% else %}
+              <img class="object-cover mx-auto h-full w-full" src="/images/mariage.png" alt="{{ follower.name }}" />
+            {% endif %}
+          </div>
           <h3 class="h3 text-lg">{{ follower.name }}</h3>
         </a>
       </div>

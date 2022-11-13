@@ -7,12 +7,12 @@
 {% block content %}
   <div class="flex justify-between mb-4">
     <div>
-      <a href="/provinces" class="block self-end rounded-md py-1 px-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">&lt; Go back</a>
+      <a href="/provinces">&lt; Go back</a>
     </div>
     {% if app.user %}
       <div class="flex">
-        <a href="/provinces/edit/{{ province.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">Éditer</a>
-        <a href="/provinces/delete/{{ province.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-red-500 hover:bg-red-600 duration-100 text-white">Supprimer</a>
+        <a href="/provinces/edit/{{ province.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">Edit</a>
+        <a href="/provinces/delete/{{ province.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-red-500 hover:bg-red-600 duration-100 text-white">Delete</a>
       </div>
     {% endif %}
   </div>

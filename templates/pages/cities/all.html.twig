@@ -15,11 +15,16 @@
 
   <div class="flex mt-4">
     {% for city in cities %}
-      <div class="m-4 p-4">
+      <div class="relative w-1/5 m-4 p-4">
         <a href="/cities/{{ city.name }}">
-          <img src="{{ city.photo }}" alt="{{ city.name }}" width="30%" height="auto" />
+          <div class="relative overflow-hidden w-full h-44 bg-gray-300">
+            {% if city.photo %}
+              <img class="object-cover mx-auto h-full w-full" src="{{ city.photo }}" alt="{{ city.name }}" />
+            {% else %}
+              <img class="object-cover mx-auto h-full w-full" src="/images/city.png" alt="{{ city.name }}" />
+            {% endif %}
+          </div>
           <h3 class="h3 text-lg">{{ city.name }}</h3>
-          <p>{{ city.description }}</p>
           <p>{{ city.province }}</p>
         </a>
       </div>
