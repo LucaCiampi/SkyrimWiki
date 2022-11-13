@@ -12,9 +12,7 @@
       <form>
         <div class="mx-auto w-full max-w-md">
             <h1 class="text-xl mb-2">New</h1>
-            <div class="my-custom-class-for-errors">
                 {{ form_errors(skill_form) }}
-            </div>
             <div class="mb-3">
                 <label for="skill-name">Name</label>
                 {{ form_widget(skill_form.name, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'skill-name'}}) }}

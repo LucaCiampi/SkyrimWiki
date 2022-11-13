@@ -11,9 +11,7 @@
       {{ form_row(race_form._token) }}
       <form>
         <h1 class="text-xl mb-2">New</h1>
-        <div class="my-custom-class-for-errors">
             {{ form_errors(race_form) }}
-        </div>
         <div class="mb-3">
                 <label for="race-name" class="block text-sm font-medium mb-1">Name</label>
                 {{ form_widget(race_form.name, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'race-name'}}) }}

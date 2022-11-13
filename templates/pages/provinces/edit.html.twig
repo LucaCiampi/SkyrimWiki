@@ -6,13 +6,11 @@
 
 {% block content %}
     <a href="/provinces">Go back</a>
-    edit province
+    <h1 class="text-3xl">Edit province</h1>
     {{ form_start(province_form) }}
       {{ form_row(province_form._token) }}
       <form>
-          <div class="my-custom-class-for-errors">
               {{ form_errors(province_form) }}
-          </div>
           <div class="mb-3">
               <label for="province-name" class="block text-sm font-medium mb-1">Name</label>
               {{ form_widget(province_form.name, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'province-name'}}) }}
@@ -25,7 +23,7 @@
               <label for="post-content">Image</label>
               {{ form_widget(province_form.image, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'post-image', 'placeholder' : 'https://....'}}) }}
           </div>
-          {{ form_row(province_form.submit) }}
+          {{ form_row(province_form.submit, {'attr': {'class': 'btn--submit rounded-md py-1 px-4 bg-green-700'}}) }}
       </form>
       {{ form_end(province_form) }}
 {% endblock %}

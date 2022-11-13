@@ -10,9 +10,7 @@
     {{ form_start(follower_form) }}
       {{ form_row(follower_form._token) }}
       <form>
-            <div class="my-custom-class-for-errors">
                 {{ form_errors(follower_form) }}
-            </div>
             <div class="mb-3">
                 <label for="follower-name" class="block text-sm font-medium mb-1">Name</label>
                 {{ form_widget(follower_form.name, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'follower-name'}}) }}
@@ -33,7 +31,7 @@
                 <label for="follower-city" class="block text-sm font-medium mb-1">Found in</label>
                 {{ form_widget(follower_form.livingIn, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'follower-city'}}) }}
             </div>
-            {{ form_row(follower_form.submit, {'attr': {'class': 'block self-end rounded-md py-1 px-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white'}}) }}
+            {{ form_row(follower_form.submit, {'attr': {'class': 'btn--submit rounded-md py-1 px-4 bg-green-700'}}) }}
       </form>
       {{ form_end(follower_form) }}
 {% endblock %}
