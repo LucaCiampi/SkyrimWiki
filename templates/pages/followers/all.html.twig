@@ -5,11 +5,13 @@
 {% endblock %}
 
 {% block content %}
-  <h1 class="h1 text-3xl mb-3">Followers of The Elder Scrolls</h1>
-  
-  {% if app.user %}
-    <a href="/followers/new" class="border border-gray-200 rounded-md py-1 px-2 bg-gray-200">Add</a>
-  {% endif %}
+  <div class="flex">
+    <h1 class="h1 text-3xl mr-4">Followers of Skyrim</h1>
+    {% if app.user %}
+      <a href="/followers/new" class="block self-end rounded-md py-1 px-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">Add</a>
+    {% endif %}
+  </div>
+  <img src="/images/thuum.png" alt="Thuum" />
 
   <div class="flex mt-4">
     {% for follower in followers %}

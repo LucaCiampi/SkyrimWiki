@@ -74,6 +74,7 @@ Encore
 
     // TailwindCSS
     .enablePostCssLoader()
+    .addStyleEntry('fonts', './assets/styles/fonts.css')
     ;
 
 module.exports = Encore.getWebpackConfig();

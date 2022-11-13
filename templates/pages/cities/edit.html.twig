@@ -14,7 +14,7 @@
               {{ form_errors(city_form) }}
           </div>
           <div class="mb-3">
-              <label for="city-name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+              <label for="city-name" class="block text-sm font-medium mb-1">Name</label>
               {{ form_widget(city_form.name, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'city-name'}}) }}
           </div>
           <div class="mb-3">
@@ -29,7 +29,7 @@
               <label for="city-photo">Province</label>
               {{ form_widget(city_form.province, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'city-photo', 'placeholder' : 'https://....'}}) }}
           </div>
-          {{ form_row(city_form.submit, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full bg-gray-200'}}) }}
+          {{ form_row(city_form.submit, {'attr': {'class': 'btn--submit rounded-md py-1 px-4 bg-green-700'}}) }}
       </form>
       {{ form_end(city_form) }}
 {% endblock %}

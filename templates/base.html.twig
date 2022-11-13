@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% block stylesheets %}
+      {{ encore_entry_link_tags('fonts') }}
       {{ encore_entry_link_tags('app') }}
     {% endblock %}
     <title>
@@ -14,7 +15,7 @@
   </head>
 
   <body>
-    <header class="header sticky top-0 bg-neutral-800 text-white">
+    <header class="header sticky top-0 bg-neutral-800 text-white z-50">
       <div class="flex justify-between container mx-auto py-2">
         <nav class="flex">
           <a href="/" class="mr-10">🏠</a>
@@ -42,7 +43,7 @@
         <div class="flex">
           {% if app.user %}
             <a class="ml-2" href="/user/{{ app.user.id }}">{{ app.user.username }}</a>
-            <a class="ml-2" href="/logout" class=""><img class="h-6 w-6" src="/images/logout.svg" alt="" /></a>
+            <a class="ml-2" href="/logout" class=""><img class="h-6 w-6" src="/images/svg/logout.svg" alt="" /></a>
           {% else %}
             <a class="ml-2" href="/login" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">Sign in</a>
             <a class="ml-2" href="/signup" class="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Sign up</a>
@@ -51,13 +52,16 @@
       </div>
     </header>
 
-    <main class="main container mx-auto py-12">
-      {% block content %}
+    <main class="main">
+      <img src="/images/dragon-wall-grey.jpg" alt="Alduin wall" class="fixed inset-0 min-h-screen object-cover" />
+      <div class="content container mx-auto py-12 px-6 z-10 relative bg-neutral-900/[.9]">
+        {% block content %}
 
-      {% endblock %}
+        {% endblock %}
+      </div>
     </main>
 
-    <footer class="footer bg-neutral-800 text-white">
+    <footer class="footer bg-neutral-800 text-white z-30 relative">
       {% block footer %}
         <div class="flex container mx-auto py-12">
           <p class="text-center text-muted">© 2022 SkyrimWiki, Luca Ciampi</p>

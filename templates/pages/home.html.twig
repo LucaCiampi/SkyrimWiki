@@ -1,15 +1,85 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block stylesheets %}
+      {{ encore_entry_link_tags('fonts') }}
+      {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    <title>
+      {% block title %}
 
-{% block title %}
-  Accueil
-{% endblock %}
+      {% endblock %}— SkyrimWiki
+    </title>
+  </head>
 
-{% block head %}
-    {{ parent() }}
-{% endblock %}
+  <body>
+    <header class="header sticky top-0 bg-neutral-800 text-white z-50">
+      <div class="flex justify-between container mx-auto py-2">
+        <nav class="flex">
+          <a href="/" class="mr-10">🏠</a>
+          <ul class="flex">
+            <li>
+              <a href="/" class="mr-4">Home</a>
+            </li>
+            <li>
+              <a href="/races" class="mr-4">Races</a>
+            </li>
+            <li>
+              <a href="/provinces" class="mr-4">Provinces</a>
+            </li>
+            <li>
+              <a href="/skills" class="mr-4">Skills</a>
+            </li>
+            <li>
+              <a href="/cities" class="mr-4">Cities</a>
+            </li>
+            <li>
+              <a href="/followers" class="mr-4">Followers</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="flex">
+          {% if app.user %}
+            <a class="ml-2" href="/user/{{ app.user.id }}">{{ app.user.username }}</a>
+            <a class="ml-2" href="/logout" class=""><img class="h-6 w-6" src="/images/svg/logout.svg" alt="" /></a>
+          {% else %}
+            <a class="ml-2" href="/login" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">Sign in</a>
+            <a class="ml-2" href="/signup" class="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Sign up</a>
+          {% endif %}
+        </div>
+      </div>
+    </header>
 
-{% block content %}
-    <a href="/races">Races</a>
-    <a href="/provinces">Provinces</a>
-    <a href="/skills">Skills</a>
-{% endblock %}
+    <main class="main">
+      <img src="./images/home-background.jpg" alt="Skyrim" class="absolute inset-0 object-cover min-h-screen min-w-full" />
+      {% block content %}
+        <div class="content container mx-auto py-12 z-10 relative">
+          <section class="section home-header">
+            <h1 class="text-5xl text-center text-white z-10 relative mx-auto font-balgruf">Skyrim <br />Wiki</h1>
+            <div class="flex relative z-20 mx-auto">
+              <div class="m-2 border border-gray-600 rounded-md py-1 px-2 bg-gray-700/[.6]">
+                <a href="/races">Races</a>
+              </div>
+              <div class="m-2 border border-gray-600 rounded-md py-1 px-2 bg-gray-700/[.6]">
+                <a href="/skills">Skills</a>
+              </div>
+              <div class="m-2 border border-gray-600 rounded-md py-1 px-2 bg-gray-700/[.6]">
+                <a href="/provinces">Provinces</a>
+              </div>
+            </div>
+          </section>
+        </div>
+      {% endblock %}
+    </main>
+
+    <footer class="footer bg-neutral-800 text-white">
+      {% block footer %}
+        <div class="flex container mx-auto py-12">
+          <p class="text-center text-muted">© 2022 SkyrimWiki, Luca Ciampi</p>
+        </div>
+      {% endblock %}
+    </footer>
+  </body>
+</html>

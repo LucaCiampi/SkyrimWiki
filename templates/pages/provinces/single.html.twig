@@ -5,14 +5,22 @@
 {% endblock %}
 
 {% block content %}
-  <a href="/provinces">Go back</a>
-  Province {{ province.name }}
-  {{ province.description }}
-  {% if province.image %}
-    <img src="{{ province.image }}" alt="{{ province.name }}" />
-  {% endif %}
-  {% if app.user %}
-    <a href="/provinces/edit/{{ province.name }}">Éditer</a>
-    <a href="/provinces/delete/{{ province.name }}">Supprimer</a>
-  {% endif %}
+  <div class="flex justify-between mb-4">
+    <div>
+      <a href="/provinces" class="block self-end rounded-md py-1 px-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">&lt; Go back</a>
+    </div>
+    {% if app.user %}
+      <div class="flex">
+        <a href="/provinces/edit/{{ province.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">Éditer</a>
+        <a href="/provinces/delete/{{ province.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-red-500 hover:bg-red-600 duration-100 text-white">Supprimer</a>
+      </div>
+    {% endif %}
+  </div>
+  <div class="mb-4">
+    <h1 class="text-3xl">{{ province.name }}</h1>
+    {{ province.description }}
+    {% if province.image %}
+      <img src="{{ province.image }}" alt="{{ province.name }}" />
+    {% endif %}
+  </div>
 {% endblock %}

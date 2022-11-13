@@ -5,11 +5,21 @@
 {% endblock %}
 
 {% block content %}
-  <a href="/skills">Go back</a>
-  Skill of {{ skill.name }}
-
-  {% if app.user %}
-    <a href="/skills/edit/{{ skill.name }}">Éditer</a>
-    <a href="/skills/delete/{{ skill.name }}">Supprimer</a>
-  {% endif %}
+  <div class="flex justify-between mb-4">
+    <div>
+      <a href="/skills" class="block self-end rounded-md py-1 px-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">&lt; Go back</a>
+    </div>
+    {% if app.user %}
+      <div class="flex">
+        <a href="/skills/edit/{{ skill.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">Éditer</a>
+        <a href="/skills/delete/{{ skill.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-red-500 hover:bg-red-600 duration-100 text-white">Supprimer</a>
+      </div>
+    {% endif %}
+  </div>
+  <div class="mb-4">
+    <h1 class="text-3xl">{{ skill.name }}</h1>
+    {% if skill.image %}
+      <img src="{{ skill.image }}" alt="{{ skill.name }}" />
+    {% endif %}
+  </div>
 {% endblock %}

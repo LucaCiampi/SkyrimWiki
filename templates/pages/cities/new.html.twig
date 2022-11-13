@@ -14,21 +14,21 @@
               {{ form_errors(city_form) }}
           </div>
           <div class="mb-3">
-              <label for="city-name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+              <label for="city-name" class="block text-sm font-medium mb-1">Name</label>
               {{ form_widget(city_form.name, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'city-name'}}) }}
           </div>
           <div class="mb-3">
-              <label for="city-description">Description</label>
+              <label for="city-description" class="block text-sm font-medium mb-1">Description</label>
               {{ form_widget(city_form.description, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'rows': '10', 'id' : 'city-description'}}) }}
           </div>
           <div class="mb-3">
-              <label for="city-photo">Photo</label>
+              <label for="city-photo" class="block text-sm font-medium mb-1">Photo</label>
               {{ form_widget(city_form.photo, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'city-photo', 'placeholder' : 'https://....'}}) }}
           </div>
           <div class="mb-3">
-              <label for="city-photo">Province</label>
+              <label for="city-photo" class="block text-sm font-medium mb-1">Province</label>
               {{ form_widget(city_form.province, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'city-photo', 'placeholder' : 'https://....'}}) }}
           </div>
-          {{ form_row(city_form.submit, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full bg-gray-200'}}) }}
+          {{ form_row(city_form.submit, {'attr': {'class': 'btn--submit rounded-md py-1 px-4 bg-green-700'}}) }}
       </form>
 {% endblock %}

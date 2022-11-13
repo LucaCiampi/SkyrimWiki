@@ -27,6 +27,9 @@ class Skill
     #[ORM\ManyToMany(targetEntity: Race::class, mappedBy: 'skills')]
     private Collection $races;
 
+    #[ORM\Column(length: 511, nullable: true)]
+    private ?string $image = null;
+
     public function __construct()
     {
         $this->races = new ArrayCollection();
@@ -101,6 +104,18 @@ class Skill
         if ($this->races->removeElement($race)) {
             $race->removeSkill($this);
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

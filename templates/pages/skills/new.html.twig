@@ -19,7 +19,7 @@
                 <label for="skill-name">Name</label>
                 {{ form_widget(skill_form.name, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'skill-name'}}) }}
             </div>
-            {{ form_row(skill_form.submit, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full bg-gray-200'}}) }}
+            {{ form_row(skill_form.submit, {'attr': {'class': 'btn--submit rounded-md py-1 px-4 bg-green-700'}}) }}
         </div>
       </form>
       {{ form_end(skill_form) }}

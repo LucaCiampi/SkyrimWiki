@@ -7,17 +7,18 @@
 {% block content %}
   <div class="flex justify-between mb-4">
     <div>
-      <a href="/races" class="border border-gray-200 rounded-md py-1 px-2 bg-gray-200">&lt; Go back</a>
+      <a href="/races" class="block self-end rounded-md py-1 px-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">&lt; Go back</a>
     </div>
     {% if app.user %}
-      <div>
-        <a href="/races/edit/{{ race.name }}" class="border border-gray-200 rounded-md py-1 px-2 bg-gray-200">Éditer</a>
-        <a href="/races/delete/{{ race.name }}" class="border border-gray-200 rounded-md py-1 px-2 bg-gray-200">Supprimer</a>
+      <div class="flex">
+        <a href="/races/edit/{{ race.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">Éditer</a>
+        <a href="/races/delete/{{ race.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-red-500 hover:bg-red-600 duration-100 text-white">Supprimer</a>
       </div>
     {% endif %}
   </div>
   <div class="mb-4">
     <h1 class="text-3xl">{{ race.name }}</h1>
+    <h1 class="text-2xl font-dovahkiin">{{ race.name }}</h1>
     <h3 class="text-xl">people of {{ race.homeland }}</h3>
     <p>
       good at {% for skill in race.skills %}
