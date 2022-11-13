@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Edit follower
+{% endblock %}
+
+{% block content %}
+    <a href="/followers">&lt; Go back</a>
+    <h1 class="text-3xl">Edit follower</h1>
+    {{ form_start(follower_form) }}
+      {{ form_row(follower_form._token) }}
+      <form>
+            <div class="my-custom-class-for-errors">
+                {{ form_errors(follower_form) }}
+            </div>
+            <div class="mb-3">
+                <label for="follower-name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                {{ form_widget(follower_form.name, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'follower-name'}}) }}
+             </div>
+             <div class="mb-3">
+                <label for="follower-bio">Biography</label>
+                {{ form_widget(follower_form.biography, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'rows': '10', 'id' : 'follower-bio'}}) }}
+            </div>
+            <div class="mb-3">
+                <label for="follower-image">Image</label>
+                {{ form_widget(follower_form.image, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'post-image', 'placeholder' : 'https://....'}}) }}
+            </div>
+            <div class="mb-3">
+                <label for="follower-race" class="block text-sm font-medium text-gray-700 mb-1">Race</label>
+                {{ form_widget(follower_form.race, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'follower-race'}}) }}
+            </div>
+            <div class="mb-3">
+                <label for="follower-city" class="block text-sm font-medium text-gray-700 mb-1">Found in</label>
+                {{ form_widget(follower_form.livingIn, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'follower-city'}}) }}
+            </div>
+            {{ form_row(follower_form.submit, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 bg-gray-200'}}) }}
+      </form>
+      {{ form_end(follower_form) }}
+{% endblock %}

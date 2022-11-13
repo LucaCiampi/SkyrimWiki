@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\FollowerRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FollowerRepository::class)]
@@ -18,7 +19,7 @@ class Follower
 
     #[ORM\ManyToOne(inversedBy: 'followers')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Race $Race = null;
+    private ?Race $race = null;
 
     #[ORM\ManyToOne(inversedBy: 'followers')]
     private ?City $livingIn = null;
@@ -28,6 +29,12 @@ class Follower
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $modifiedAt = null;
+
+    #[ORM\Column(length: 511, nullable: true)]
+    private ?string $image = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $biography = null;
 
     public function getId(): ?int
     {
@@ -48,12 +55,12 @@ class Follower
 
     public function getRace(): ?Race
     {
-        return $this->Race;
+        return $this->race;
     }
 
-    public function setRace(?Race $Race): self
+    public function setRace(?Race $race): self
     {
-        $this->Race = $Race;
+        $this->race = $race;
 
         return $this;
     }
@@ -90,6 +97,30 @@ class Follower
     public function setModifiedAt(?\DateTimeImmutable $modifiedAt): self
     {
         $this->modifiedAt = $modifiedAt;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getBiography(): ?string
+    {
+        return $this->biography;
+    }
+
+    public function setBiography(?string $biography): self
+    {
+        $this->biography = $biography;
 
         return $this;
     }

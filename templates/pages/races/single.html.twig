@@ -20,7 +20,7 @@
     <h1 class="text-3xl">{{ race.name }}</h1>
     <h3 class="text-xl">people of {{ race.homeland }}</h3>
     <p>
-      good at{% for skill in race.skills %}
+      good at {% for skill in race.skills %}
         {{ skill }}
       {% endfor %}
     </p>

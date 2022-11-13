@@ -86,3 +86,20 @@ app_city_edit:
 app_city_delete:
     path: /cities/delete/{slug}
     controller: App\Controller\CityController::delete
+
+# Followers
+app_follower_index:
+    path: /followers
+    controller: App\Controller\FollowerController::index
+app_follower_new:
+    path: /followers/new
+    controller: App\Controller\FollowerController::create
+app_follower_show:
+    path: /followers/{slug}
+    controller: App\Controller\FollowerController::show
+app_follower_edit:
+    path: /followers/edit/{slug}
+    controller: App\Controller\FollowerController::edit
+app_follower_delete:
+    path: /followers/delete/{slug}
+    controller: App\Controller\FollowerController::delete

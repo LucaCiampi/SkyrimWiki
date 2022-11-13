@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  All followers
+{% endblock %}
+
+{% block content %}
+  <h1 class="h1 text-3xl mb-3">Followers of The Elder Scrolls</h1>
+  
+  {% if app.user %}
+    <a href="/followers/new" class="border border-gray-200 rounded-md py-1 px-2 bg-gray-200">Add</a>
+  {% endif %}
+
+  <div class="flex mt-4">
+    {% for follower in followers %}
+      <div class="m-4 p-4">
+        <a href="/followers/{{ follower.name }}">
+          <img src="{{ follower.image }}" alt="{{ follower.name }}" width="30%" height="auto" />
+          <h3 class="h3 text-lg">{{ follower.name }}</h3>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
