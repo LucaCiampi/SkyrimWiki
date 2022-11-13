@@ -46,6 +46,10 @@ class FollowerController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+
         $follower = new Follower();
         $follower->setCreatedAt(new \DateTimeImmutable());
         $follower->setModifiedAt(new \DateTimeImmutable());
@@ -70,11 +74,11 @@ class FollowerController extends AbstractController
      */
     public function edit(Request $request, ManagerRegistry $doctrine, String $slug): Response
     {
-        $follower = $doctrine->getRepository(Follower::class)->findOneBy(['name' => $slug]);
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
 
-        // if ($post->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
-        //     throw $this->createAccessDeniedException();
-        // }
+        $follower = $doctrine->getRepository(Follower::class)->findOneBy(['name' => $slug]);
 
         $follower->setModifiedAt(new \DateTimeImmutable());
         $form = $this->createForm(FollowerFormType::class, $follower);
@@ -99,11 +103,11 @@ class FollowerController extends AbstractController
      */
     public function delete(ManagerRegistry $doctrine, String $slug): Response
     {
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+        
         $follower = $doctrine->getRepository(Follower::class)->findOneBy(['name' => $slug]);
-
-        // if ($follower->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
-        //     throw $this->createAccessDeniedException();
-        // }
 
         $entityManager = $doctrine->getManager();
         $entityManager->remove($follower);

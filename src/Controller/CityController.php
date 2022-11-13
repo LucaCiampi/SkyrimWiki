@@ -103,11 +103,11 @@ class CityController extends AbstractController
      */
     public function delete(ManagerRegistry $doctrine, String $slug): Response
     {
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+        
         $city = $doctrine->getRepository(City::class)->findOneBy(['name' => $slug]);
-
-        // if ($city->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
-        //     throw $this->createAccessDeniedException();
-        // }
 
         $entityManager = $doctrine->getManager();
         $entityManager->remove($city);

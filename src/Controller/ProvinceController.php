@@ -24,7 +24,7 @@ class ProvinceController extends AbstractController
             'provinces' => $provinces
         ));
     }
-    
+
     /**
      * Shows a single province
      */
@@ -46,6 +46,10 @@ class ProvinceController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+
         $province = new Province();
         $province->setCreatedAt(new \DateTimeImmutable());
         $province->setModifiedAt(new \DateTimeImmutable());
@@ -70,11 +74,11 @@ class ProvinceController extends AbstractController
      */
     public function edit(Request $request, ManagerRegistry $doctrine, String $slug): Response
     {
-        $province = $doctrine->getRepository(Province::class)->findOneBy(['name' => $slug]);
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
 
-        // if ($post->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
-        //     throw $this->createAccessDeniedException();
-        // }
+        $province = $doctrine->getRepository(Province::class)->findOneBy(['name' => $slug]);
 
         $province->setModifiedAt(new \DateTimeImmutable());
         $form = $this->createForm(ProvinceFormType::class, $province);
@@ -88,7 +92,7 @@ class ProvinceController extends AbstractController
             $this->addFlash('message', 'Province modifiée avec succès');
             return $this->redirectToRoute('app_province_index');
         }
-        
+
         return $this->render('pages/provinces/edit.html.twig', [
             'province_form' => $form->createView(),
         ]);
@@ -101,9 +105,9 @@ class ProvinceController extends AbstractController
     {
         $province = $doctrine->getRepository(Province::class)->findOneBy(['name' => $slug]);
 
-        // if ($province->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
-        //     throw $this->createAccessDeniedException();
-        // }
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
 
         $entityManager = $doctrine->getManager();
         $entityManager->remove($province);

@@ -46,6 +46,10 @@ class SkillController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+
         $skill = new Skill();
         $skill->setCreatedAt(new \DateTimeImmutable());
         $skill->setModifiedAt(new \DateTimeImmutable());
@@ -70,11 +74,11 @@ class SkillController extends AbstractController
      */
     public function edit(Request $request, ManagerRegistry $doctrine, String $slug): Response
     {
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+        
         $skill = $doctrine->getRepository(Skill::class)->findOneBy(['name' => $slug]);
-
-        // if ($post->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
-        //     throw $this->createAccessDeniedException();
-        // }
 
         $skill->setModifiedAt(new \DateTimeImmutable());
         $form = $this->createForm(SkillFormType::class, $skill);
@@ -99,11 +103,11 @@ class SkillController extends AbstractController
      */
     public function delete(ManagerRegistry $doctrine, String $slug): Response
     {
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+        
         $skill = $doctrine->getRepository(Skill::class)->findOneBy(['name' => $slug]);
-
-        // if ($skill->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
-        //     throw $this->createAccessDeniedException();
-        // }
 
         $entityManager = $doctrine->getManager();
         $entityManager->remove($skill);

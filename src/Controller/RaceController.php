@@ -103,11 +103,11 @@ class RaceController extends AbstractController
      */
     public function delete(ManagerRegistry $doctrine, String $slug): Response
     {
-        $race = $doctrine->getRepository(Race::class)->findOneBy(['name' => $slug]);
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
 
-        // if ($race->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
-        //     throw $this->createAccessDeniedException();
-        // }
+        $race = $doctrine->getRepository(Race::class)->findOneBy(['name' => $slug]);
 
         $entityManager = $doctrine->getManager();
         $entityManager->remove($race);
