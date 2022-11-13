@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Single province
+  {{ province.name }}
 {% endblock %}
 
 {% block content %}
@@ -23,7 +23,18 @@
       {% endif %}
       <h1 class="text-3xl">{{ province.name }}</h1>
       <h2 class="text-xl font-dovahkiin">{{ province.name }}</h2>
-      {{ province.description }}
+      <div class="mt-6">
+        <p>{{ province.description }}</p>
+      </div>
+      <div class="mt-6">
+        Notable cities of this province :<ul>
+          {% for city in province.cities %}
+            <li>
+              <a href="/cities/{{ city.name }}">{{ city.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
   </div>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Single race
+  {{ race.name }}
 {% endblock %}
 
 {% block content %}
@@ -26,17 +26,19 @@
         <h2 class="text-xl font-dovahkiin">{{ race.name }}</h2>
         <h3 class="text-xl">people of {{ race.homeland }}</h3>
         <p>
-          good at{% for skill in race.skills %}
-            {{ skill }}
+          Good at :{% for skill in race.skills %}
+            <a href="/skills/{{ skill.name }}">{{ skill }}</a>
           {% endfor %}
         </p>
-        {{ race.description }}
+        <div class="mt-6">
+          <p>{{ race.description }}</p>
+        </div>
         {# <p>
-      Available followers of this race : <br>
-      {% for follower in race.followers %}
-        {{ follower.name }}
-      {% endfor %}
-    </p> #}
+          Available followers of this race : <br />
+          {% for follower in race.followers %}
+            {{ follower.name }}
+          {% endfor %}
+        </p> #}
       </div>
     </div>
   </div>

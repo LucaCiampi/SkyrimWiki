@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Single skill
+  {{ skill.name }}
 {% endblock %}
 
 {% block content %}
@@ -23,6 +23,15 @@
       {% endif %}
       <h1 class="text-3xl">{{ skill.name }}</h1>
       <h2 class="text-xl font-dovahkiin">{{ skill.name }}</h2>
+      <div class="mt-6">
+        Races to play for this skill :<ul>
+          {% for race in skill.races %}
+            <li>
+              <a href="/races/{{ race.name }}">{{ race.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
   </div>
 {% endblock %}

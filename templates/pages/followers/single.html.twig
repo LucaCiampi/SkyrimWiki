@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Single follower
+  {{ follower.name }}
 {% endblock %}
 
 {% block content %}
@@ -24,8 +24,10 @@
       <h1 class="text-3xl">{{ follower.name }}</h1>
       <h2 class="text-xl font-dovahkiin">{{ follower.name }}</h2>
       <h3 class="text-xl">{{ follower.race }}</h3>
-      <p>Found in {{ follower.livingIn }}</p>
-      <p>{{ follower.biography }}</p>
+      <p>Found in <a href="/cities/{{ follower.livingIn }}">{{ follower.livingIn }}</a></p>
+      <div class="mt-6">
+        <p>{{ follower.biography }}</p>
+      </div>
     </div>
   </div>
 {% endblock %}
