@@ -6,18 +6,16 @@
 
 {% block content %}
     <a href="/skills">Go back</a>
-    edit skill
+    <h1 class="text-3xl">Edit skill</h1>
     {{ form_start(skill_form) }}
       {{ form_row(skill_form._token) }}
       <form>
-          <div class="my-custom-class-for-errors">
-              {{ form_errors(skill_form) }}
-          </div>
+        {{ form_errors(skill_form) }}
           <div class="mb-3">
               <label for="skill-name" class="block text-sm font-medium mb-1">Name</label>
               {{ form_widget(skill_form.name, {'attr': {'class': 'border border-gray-200 rounded-md py-1 px-2 w-full', 'id' : 'skill-name'}}) }}
           </div>
-          {{ form_row(skill_form.submit) }}
+          {{ form_row(skill_form.submit, {'attr': {'class': 'btn--submit rounded-md py-1 px-4 bg-green-700'}}) }}
       </form>
       {{ form_end(skill_form) }}
 {% endblock %}
