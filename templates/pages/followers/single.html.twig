@@ -5,17 +5,25 @@
 {% endblock %}
 
 {% block content %}
-  <a href="/followers">&lt; Go back</a>
-  <h1 class="text-3xl">{{ follower.name }}</h1>
-  <h2 class="text-xl font-dovahkiin">{{ follower.name }}</h2>
-  <h3 class="text-xl">{{ follower.race }}</h3>
-  <p>Found in {{ follower.livingIn }}</p>
-  <p>{{ follower.biography }}</p>
-  {% if follower.image %}
-    <img src="{{ follower.image }}" alt="{{ follower.name }}" />
-  {% endif %}
-  {% if app.user %}
-    <a href="/followers/edit/{{ follower.name }}">Edit</a>
-    <a href="/followers/delete/{{ follower.name }}">Delete</a>
-  {% endif %}
+  <div class="flex justify-between mb-4">
+    <div>
+      <a href="/followers">&lt; Go back</a>
+    </div>
+    {% if app.user %}
+      <div class="flex">
+        <a href="/followers/edit/{{ follower.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">Edit</a>
+        <a href="/followers/delete/{{ follower.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-red-500 hover:bg-red-600 duration-100 text-white">Delete</a>
+      </div>
+    {% endif %}
+  </div>
+  <div class="mb-4">
+    <h1 class="text-3xl">{{ follower.name }}</h1>
+    <h2 class="text-xl font-dovahkiin">{{ follower.name }}</h2>
+    <h3 class="text-xl">{{ follower.race }}</h3>
+    <p>Found in {{ follower.livingIn }}</p>
+    <p>{{ follower.biography }}</p>
+    {% if follower.image %}
+      <img src="{{ follower.image }}" alt="{{ follower.name }}" />
+    {% endif %}
+  </div>
 {% endblock %}

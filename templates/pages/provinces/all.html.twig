@@ -13,11 +13,17 @@
   </div>
   <img src="/images/provinces.png" alt="Thuum" />
 
-  <div class="flex mt-4">
+  <div class="flex justify-start mt-4">
     {% for province in provinces %}
-      <div class="m-4 p-4">
+      <div class="relative w-1/5 m-4 p-4">
         <a href="/provinces/{{ province.name }}">
-          <img src="{{ province.image }}" alt="{{ province.name }}" width="30%" height="auto" />
+          <div class="relative overflow-hidden w-full h-42">
+          {% if province.image %}
+            <img class="object-cover mx-auto h-full w-full" src="{{ province.image }}" alt="{{ province.name }}" />
+          {% else %}
+            <img class="object-cover mx-auto h-full w-full" src="/images/provinces.png" alt="{{ province.name }}" />
+          {% endif %}
+        </div>
           <h3 class="h3 text-lg">{{ province.name }}</h3>
         </a>
       </div>
