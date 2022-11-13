@@ -9,34 +9,31 @@
     {% endblock %}
     <title>
       {% block title %}
-
-      {% endblock %}— SkyrimWiki
+        SkyrimWiki
+      {% endblock %}
     </title>
   </head>
 
   <body>
     <header class="header sticky top-0 bg-neutral-800 text-white z-50">
-      <div class="flex justify-between container mx-auto py-2">
+      <div class="flex justify-between container mx-auto py-3">
         <nav class="flex">
-          <a href="/" class="mr-10">🏠</a>
+          <a href="/" class="mr-10 font-balgruf flex items-center"><img src="/images/skyrim.png" alt="SkyrimWiki" width="20px" /><span>SkyrimWiki</span></a>
           <ul class="flex">
             <li>
-              <a href="/" class="mr-4">Home</a>
+              <a href="/races" class="mr-5">Races</a>
             </li>
             <li>
-              <a href="/races" class="mr-4">Races</a>
+              <a href="/provinces" class="mr-5">Provinces</a>
             </li>
             <li>
-              <a href="/provinces" class="mr-4">Provinces</a>
+              <a href="/skills" class="mr-5">Skills</a>
             </li>
             <li>
-              <a href="/skills" class="mr-4">Skills</a>
+              <a href="/cities" class="mr-5">Cities</a>
             </li>
             <li>
-              <a href="/cities" class="mr-4">Cities</a>
-            </li>
-            <li>
-              <a href="/followers" class="mr-4">Followers</a>
+              <a href="/followers" class="mr-5">Followers</a>
             </li>
           </ul>
         </nav>
@@ -53,7 +50,7 @@
     </header>
 
     <main class="main">
-      <img src="./images/home-background.jpg" alt="Skyrim" class="absolute inset-0 object-cover min-h-screen min-w-full" />
+      <img src="/images/home-background.jpg" alt="Skyrim" class="absolute inset-0 object-cover min-h-screen min-w-full" />
       {% block content %}
         <div class="content container mx-auto py-12 z-10 relative">
           <section class="section home-header">
