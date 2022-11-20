@@ -56,6 +56,7 @@ class ProvinceController extends AbstractController
         $province = new Province();
         $province->setCreatedAt(new \DateTimeImmutable());
         $province->setModifiedAt(new \DateTimeImmutable());
+        $province->setAuthor($this->getUser());
         $form = $this->createForm(ProvinceFormType::class, $province);
 
         $form->handleRequest($request);

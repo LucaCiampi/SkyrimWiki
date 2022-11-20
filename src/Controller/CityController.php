@@ -56,6 +56,7 @@ class CityController extends AbstractController
         $city = new City();
         $city->setCreatedAt(new \DateTimeImmutable());
         $city->setModifiedAt(new \DateTimeImmutable());
+        $city->setAuthor($this->getUser());
         $form = $this->createForm(CityFormType::class, $city);
 
         $form->handleRequest($request);

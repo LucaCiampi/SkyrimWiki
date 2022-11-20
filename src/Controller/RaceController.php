@@ -56,6 +56,7 @@ class RaceController extends AbstractController
         $race = new Race();
         $race->setCreatedAt(new \DateTimeImmutable());
         $race->setModifiedAt(new \DateTimeImmutable());
+        $race->setAuthor($this->getUser());
         $form = $this->createForm(RaceFormType::class, $race);
 
         $form->handleRequest($request);

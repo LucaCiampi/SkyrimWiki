@@ -56,6 +56,7 @@ class FollowerController extends AbstractController
         $follower = new Follower();
         $follower->setCreatedAt(new \DateTimeImmutable());
         $follower->setModifiedAt(new \DateTimeImmutable());
+        $follower->setAuthor($this->getUser());
         $form = $this->createForm(FollowerFormType::class, $follower);
 
         $form->handleRequest($request);

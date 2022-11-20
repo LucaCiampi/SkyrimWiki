@@ -56,6 +56,7 @@ class SkillController extends AbstractController
         $skill = new Skill();
         $skill->setCreatedAt(new \DateTimeImmutable());
         $skill->setModifiedAt(new \DateTimeImmutable());
+        $skill->setAuthor($this->getUser());
         $form = $this->createForm(SkillFormType::class, $skill);
 
         $form->handleRequest($request);
