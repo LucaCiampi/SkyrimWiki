@@ -58,15 +58,63 @@
             <h1 class="text-5xl text-center text-white z-10 relative mx-auto font-balgruf">Skyrim <br />Wiki</h1>
             <div class="flex relative z-20 mx-auto">
               <div class="m-2 border border-gray-600 rounded-md py-1 px-2 bg-gray-700/[.6]">
-                <a href="/races">Races</a>
+                <a href="/races" class="text-2xl font-balgruf">Races</a>
+                <div>
+                  <h2 class="text-xl text-white font-balgruff">Latest articles</h2>
+                  <ul>
+                  {% for race in last_races_articles %}
+                    <li><a href="/races/{{ race.name }}">- {{ race.name }}</a></li>
+                  {% endfor %}
+                  </ul>
+                </div>
+                <div></div>
               </div>
               <div class="m-2 border border-gray-600 rounded-md py-1 px-2 bg-gray-700/[.6]">
-                <a href="/skills">Skills</a>
+                <a href="/provinces" class="text-2xl font-balgruf">Provinces</a>
+                <div>
+                  <h2 class="text-xl text-white font-balgruff">Latest articles</h2>
+                  <ul>
+                  {% for province in last_provinces_articles %}
+                    <li><a href="/provinces/{{ province.name }}">- {{ province.name }}</a></li>
+                  {% endfor %}
+                  </ul>
+                </div>
               </div>
               <div class="m-2 border border-gray-600 rounded-md py-1 px-2 bg-gray-700/[.6]">
-                <a href="/provinces">Provinces</a>
+                <a href="/skills" class="text-2xl font-balgruf">Skills</a>
+                <div>
+                  <h2 class="text-xl text-white font-balgruff">Latest articles</h2>
+                  <ul>
+                  {% for skill in last_skills_articles %}
+                    <li><a href="/skills/{{ skill.name }}">- {{ skill.name }}</a></li>
+                  {% endfor %}
+                  </ul>
+                </div>
+              </div>
+              <div class="m-2 border border-gray-600 rounded-md py-1 px-2 bg-gray-700/[.6]">
+                <a href="/cities" class="text-2xl font-balgruf">Cities</a>
+                <div>
+                  <h2 class="text-xl text-white font-balgruff">Latest articles</h2>
+                  <ul>
+                  {% for city in last_cities_articles %}
+                    <li><a href="/cities/{{ city.name }}">- {{ city.name }}</a></li>
+                  {% endfor %}
+                  </ul>
+                </div>
+              </div>
+              <div class="m-2 border border-gray-600 rounded-md py-1 px-2 bg-gray-700/[.6]">
+                <a href="/followers" class="text-2xl font-balgruf">Followers</a>
+                <div>
+                  <h2 class="text-xl text-white font-balgruff">Latest articles</h2>
+                  <ul>
+                  {% for follower in last_followers_articles %}
+                    <li><a href="/followers/{{ follower.name }}">- {{ follower.name }}</a></li>
+                  {% endfor %}
+                  </ul>
+                </div>
               </div>
             </div>
+            <div></div>
           </section>
         </div>
       {% endblock %}
