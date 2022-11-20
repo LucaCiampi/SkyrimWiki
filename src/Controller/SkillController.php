@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Skill;
+use App\Entity\User;
 use App\Form\SkillFormType;
 
 use Doctrine\Persistence\ManagerRegistry;
@@ -31,13 +32,15 @@ class SkillController extends AbstractController
     public function show(ManagerRegistry $doctrine, String $slug): Response
     {
         $skill = $doctrine->getRepository(Skill::class)->findOneBy(['name' => $slug]);
+        $author = $doctrine->getRepository(User::class)->find($skill->getAuthor());
 
         if (!$skill) {
             return $this->render('pages/404.html.twig');
         }
 
         return $this->render('pages/skills/single.html.twig', array(
-            'skill' => $skill
+            'skill' => $skill,
+            'author' => $author,
         ));
     }
 
@@ -74,11 +77,11 @@ class SkillController extends AbstractController
      */
     public function edit(Request $request, ManagerRegistry $doctrine, String $slug): Response
     {
-        if (!$this->getUser()) {
+        $skill = $doctrine->getRepository(Skill::class)->findOneBy(['name' => $slug]);
+        
+        if ($skill->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException();
         }
-        
-        $skill = $doctrine->getRepository(Skill::class)->findOneBy(['name' => $slug]);
 
         $skill->setModifiedAt(new \DateTimeImmutable());
         $form = $this->createForm(SkillFormType::class, $skill);
@@ -103,11 +106,11 @@ class SkillController extends AbstractController
      */
     public function delete(ManagerRegistry $doctrine, String $slug): Response
     {
-        if (!$this->getUser()) {
+        $skill = $doctrine->getRepository(Skill::class)->findOneBy(['name' => $slug]);
+        
+        if ($skill->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException();
         }
-        
-        $skill = $doctrine->getRepository(Skill::class)->findOneBy(['name' => $slug]);
 
         $entityManager = $doctrine->getManager();
         $entityManager->remove($skill);

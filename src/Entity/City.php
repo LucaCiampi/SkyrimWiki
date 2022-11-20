@@ -37,6 +37,9 @@ class City
     #[ORM\OneToMany(mappedBy: 'livingIn', targetEntity: Follower::class)]
     private Collection $followers;
 
+    #[ORM\ManyToOne(inversedBy: 'cities_made')]
+    private ?User $author = null;
+
     public function __construct()
     {
         $this->followers = new ArrayCollection();
@@ -150,6 +153,18 @@ class City
                 $follower->setLivingIn(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\City;
+use App\Entity\User;
 use App\Form\CityFormType;
 
 use Doctrine\Persistence\ManagerRegistry;
@@ -31,13 +32,15 @@ class CityController extends AbstractController
     public function show(ManagerRegistry $doctrine, String $slug): Response
     {
         $city = $doctrine->getRepository(City::class)->findOneBy(['name' => $slug]);
+        $author = $doctrine->getRepository(User::class)->find($city->getAuthor());
 
         if (!$city) {
             return $this->render('pages/404.html.twig');
         }
 
         return $this->render('pages/cities/single.html.twig', array(
-            'city' => $city
+            'city' => $city,
+            'author' => $author,
         ));
     }
 
@@ -74,11 +77,11 @@ class CityController extends AbstractController
      */
     public function edit(Request $request, ManagerRegistry $doctrine, String $slug): Response
     {
-        if (!$this->getUser()) {
+        $city = $doctrine->getRepository(City::class)->findOneBy(['name' => $slug]);
+        
+        if ($city->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException();
         }
-        
-        $city = $doctrine->getRepository(City::class)->findOneBy(['name' => $slug]);
 
         $city->setModifiedAt(new \DateTimeImmutable());
         $form = $this->createForm(CityFormType::class, $city);
@@ -103,11 +106,11 @@ class CityController extends AbstractController
      */
     public function delete(ManagerRegistry $doctrine, String $slug): Response
     {
-        if (!$this->getUser()) {
-            throw $this->createAccessDeniedException();
-        }
-        
         $city = $doctrine->getRepository(City::class)->findOneBy(['name' => $slug]);
+
+        if ($city->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException();
+        }        
 
         $entityManager = $doctrine->getManager();
         $entityManager->remove($city);

@@ -40,6 +40,9 @@ class Race
     #[ORM\OneToMany(mappedBy: 'Race', targetEntity: Follower::class)]
     private Collection $followers;
 
+    #[ORM\ManyToOne(inversedBy: 'races_created')]
+    private ?User $author = null;
+
     public function __construct()
     {
         $this->skills = new ArrayCollection();
@@ -178,6 +181,18 @@ class Race
                 $follower->setRace(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

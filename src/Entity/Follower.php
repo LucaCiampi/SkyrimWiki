@@ -36,6 +36,9 @@ class Follower
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $biography = null;
 
+    #[ORM\ManyToOne(inversedBy: 'followers_made')]
+    private ?User $author = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +124,18 @@ class Follower
     public function setBiography(?string $biography): self
     {
         $this->biography = $biography;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

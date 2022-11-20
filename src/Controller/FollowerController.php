@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Follower;
+use App\Entity\User;
 use App\Form\FollowerFormType;
 
 use Doctrine\Persistence\ManagerRegistry;
@@ -31,13 +32,15 @@ class FollowerController extends AbstractController
     public function show(ManagerRegistry $doctrine, String $slug): Response
     {
         $follower = $doctrine->getRepository(Follower::class)->findOneBy(['name' => $slug]);
+        $author = $doctrine->getRepository(User::class)->find($follower->getAuthor());
 
         if (!$follower) {
             return $this->render('pages/404.html.twig');
         }
 
         return $this->render('pages/followers/single.html.twig', array(
-            'follower' => $follower
+            'follower' => $follower,
+            'author' => $author,
         ));
     }
 
@@ -74,11 +77,11 @@ class FollowerController extends AbstractController
      */
     public function edit(Request $request, ManagerRegistry $doctrine, String $slug): Response
     {
-        if (!$this->getUser()) {
+        $follower = $doctrine->getRepository(Follower::class)->findOneBy(['name' => $slug]);
+
+        if ($follower->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException();
         }
-
-        $follower = $doctrine->getRepository(Follower::class)->findOneBy(['name' => $slug]);
 
         $follower->setModifiedAt(new \DateTimeImmutable());
         $form = $this->createForm(FollowerFormType::class, $follower);
@@ -103,11 +106,11 @@ class FollowerController extends AbstractController
      */
     public function delete(ManagerRegistry $doctrine, String $slug): Response
     {
-        if (!$this->getUser()) {
+        $follower = $doctrine->getRepository(Follower::class)->findOneBy(['name' => $slug]);
+        
+        if ($follower->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException();
         }
-        
-        $follower = $doctrine->getRepository(Follower::class)->findOneBy(['name' => $slug]);
 
         $entityManager = $doctrine->getManager();
         $entityManager->remove($follower);

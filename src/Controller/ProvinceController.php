@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Province;
+use App\Entity\User;
 use App\Form\ProvinceFormType;
 
 use Doctrine\Persistence\ManagerRegistry;
@@ -31,13 +32,15 @@ class ProvinceController extends AbstractController
     public function show(ManagerRegistry $doctrine, String $slug): Response
     {
         $province = $doctrine->getRepository(Province::class)->findOneBy(['name' => $slug]);
+        $author = $doctrine->getRepository(User::class)->find($province->getAuthor());
 
         if (!$province) {
             return $this->render('pages/404.html.twig');
         }
 
         return $this->render('pages/provinces/single.html.twig', array(
-            'province' => $province
+            'province' => $province,
+            'author' => $author,
         ));
     }
 
@@ -74,11 +77,11 @@ class ProvinceController extends AbstractController
      */
     public function edit(Request $request, ManagerRegistry $doctrine, String $slug): Response
     {
-        if (!$this->getUser()) {
+        $province = $doctrine->getRepository(Province::class)->findOneBy(['name' => $slug]);
+
+        if ($province->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException();
         }
-
-        $province = $doctrine->getRepository(Province::class)->findOneBy(['name' => $slug]);
 
         $province->setModifiedAt(new \DateTimeImmutable());
         $form = $this->createForm(ProvinceFormType::class, $province);
@@ -105,7 +108,7 @@ class ProvinceController extends AbstractController
     {
         $province = $doctrine->getRepository(Province::class)->findOneBy(['name' => $slug]);
 
-        if (!$this->getUser()) {
+        if ($province->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException();
         }
 

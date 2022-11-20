@@ -37,6 +37,9 @@ class Province
     #[ORM\OneToMany(mappedBy: 'province', targetEntity: City::class)]
     private Collection $cities;
 
+    #[ORM\ManyToOne(inversedBy: 'provinces_made')]
+    private ?User $author = null;
+
     public function __construct()
     {
         $this->nativeRaces = new ArrayCollection();
@@ -169,6 +172,18 @@ class Province
                 $city->setProvince(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

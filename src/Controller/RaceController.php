@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Race;
+use App\Entity\User;
 use App\Form\RaceFormType;
 
 use Doctrine\Persistence\ManagerRegistry;
@@ -31,13 +32,15 @@ class RaceController extends AbstractController
     public function show(ManagerRegistry $doctrine, String $slug): Response
     {
         $race = $doctrine->getRepository(Race::class)->findOneBy(['name' => $slug]);
+        $author = $doctrine->getRepository(User::class)->find($race->getAuthor());
 
         if (!$race) {
             return $this->render('pages/404.html.twig');
         }
 
         return $this->render('pages/races/single.html.twig', array(
-            'race' => $race
+            'race' => $race,
+            'author' => $author,
         ));
     }
 
@@ -74,11 +77,11 @@ class RaceController extends AbstractController
      */
     public function edit(Request $request, ManagerRegistry $doctrine, String $slug): Response
     {
-        if (!$this->getUser()) {
+        $race = $doctrine->getRepository(Race::class)->findOneBy(['name' => $slug]);
+        
+        if ($race->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException();
         }
-        
-        $race = $doctrine->getRepository(Race::class)->findOneBy(['name' => $slug]);
 
         $race->setModifiedAt(new \DateTimeImmutable());
         $form = $this->createForm(RaceFormType::class, $race);
@@ -103,11 +106,11 @@ class RaceController extends AbstractController
      */
     public function delete(ManagerRegistry $doctrine, String $slug): Response
     {
-        if (!$this->getUser()) {
+        $race = $doctrine->getRepository(Race::class)->findOneBy(['name' => $slug]);
+
+        if ($race->getAuthor() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException();
         }
-
-        $race = $doctrine->getRepository(Race::class)->findOneBy(['name' => $slug]);
 
         $entityManager = $doctrine->getManager();
         $entityManager->remove($race);

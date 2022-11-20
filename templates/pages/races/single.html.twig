@@ -9,7 +9,7 @@
     <div>
       <a href="/races">&lt; Go back</a>
     </div>
-    {% if app.user %}
+    {% if (app.user and race.author.id == app.user.id) or is_granted('ROLE_ADMIN') %}
       <div class="flex">
         <a href="/races/edit/{{ race.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">Edit</a>
         <a href="/races/delete/{{ race.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-red-500 hover:bg-red-600 duration-100 text-white">Delete</a>
@@ -41,5 +41,8 @@
         </p> #}
       </div>
     </div>
+  </div>
+  <div>
+    Article written by {{race.author.username}}
   </div>
 {% endblock %}

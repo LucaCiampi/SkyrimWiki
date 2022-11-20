@@ -9,7 +9,7 @@
     <div>
       <a href="/followers">&lt; Go back</a>
     </div>
-    {% if app.user %}
+    {% if (app.user and follower.author.id == app.user.id) or is_granted('ROLE_ADMIN') %}
       <div class="flex">
         <a href="/followers/edit/{{ follower.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-sky-500 hover:bg-sky-600 duration-100 text-white">Edit</a>
         <a href="/followers/delete/{{ follower.name }}" class="block self-end rounded-md py-1 px-2 ml-2 bg-red-500 hover:bg-red-600 duration-100 text-white">Delete</a>
@@ -24,10 +24,13 @@
       <h1 class="text-3xl">{{ follower.name }}</h1>
       <h2 class="text-xl font-dovahkiin">{{ follower.name }}</h2>
       <h3 class="text-xl">{{ follower.race }}</h3>
-      <p>Found in <a href="/cities/{{ follower.livingIn }}">{{ follower.livingIn }}</a></p>
+      <p>
+        Found in <a href="/cities/{{ follower.livingIn }}">{{ follower.livingIn }}</a>
+      </p>
       <div class="mt-6">
         <p>{{ follower.biography }}</p>
       </div>
     </div>
   </div>
+  <div>Article written by {{ follower.author.username }}</div>
 {% endblock %}

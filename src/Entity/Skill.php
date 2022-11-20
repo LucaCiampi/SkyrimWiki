@@ -30,6 +30,9 @@ class Skill
     #[ORM\Column(length: 511, nullable: true)]
     private ?string $image = null;
 
+    #[ORM\ManyToOne(inversedBy: 'skills_made')]
+    private ?User $author = null;
+
     public function __construct()
     {
         $this->races = new ArrayCollection();
@@ -116,6 +119,18 @@ class Skill
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }
